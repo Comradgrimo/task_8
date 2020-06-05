@@ -11,15 +11,15 @@ class QStart(object):
         ss = [self.meshok.remove(i) for i in args]
         return ss
 
-    def getfrommeshok(self, numm):
-        qq = sample(range(90), k=numm)
-        return qq
+    # def getfrommeshok(self, numm):
+    #     qq = sample(range(90), k=numm)
+    #     return qq
 
     def line(self, line):
         qq = [sorted(line[i:i + 5]) for i in range(0, len(line), 5)]
         for i in range(len(qq)):
             shuffle(self.rlist)
-            for j in range(4):                              # 5 цифр + 4 пустые клетки = 9 ячеек
+            for j in range(4):  # 5 цифр + 4 пустые клетки = 9 ячеек
                 qq[i].insert(self.rlist[j], ' ')
         return qq
 
@@ -58,16 +58,16 @@ while 1:
 qs = QStart(bochonki, number_in_card)
 qs1 = QStart(bochonki, number_in_card)
 
-line = qs.line(qs.k)                                # Делаем список из которого будем удалять
-line_c = qs1.line(qs1.k)                            # Делаем список из которого будем удалять
+line = qs.line(qs.k)  # Делаем список из которого будем удалять
+line_c = qs1.line(qs1.k)  # Делаем список из которого будем удалять
 
-lineeplayer1 = qs.vid(line, "Моя карточка")         # Формируем красивый вид
-lineeplayer2 = qs1.vid(line_c, "Компьютер")         # Формируем красивый вид
+lineeplayer1 = qs.vid(line, "Моя карточка")  # Формируем красивый вид
+lineeplayer2 = qs1.vid(line_c, "Компьютер")  # Формируем красивый вид
 
 flag_1 = 1
 
 
-def win(vid):                                      # Условия победы если заканчиваются цифры
+def win(vid):  # Условия победы если заканчиваются цифры
     z = 0
     for i in vid:
         if "--" in i:
@@ -75,7 +75,7 @@ def win(vid):                                      # Условия победы
     return z
 
 
-def mydel(i):                                       # Ищем и удаляем в  Своей карточке
+def mydel(i):  # Ищем и удаляем в  Своей карточке
     foo = i.index(gg)
     i.insert(foo, "--")
     i.remove(gg)
@@ -93,20 +93,16 @@ while flag_1 == 1:
         break
 
     gg = choice(qs.meshok)
-    qs.del1(gg)                                                 # Берем 1 номер из мешка и удаляем его из мешка
+    qs.del1(gg)  # Берем 1 номер из мешка и удаляем его из мешка
     gg = str(gg)
     print("\n")
     print(f"Новый бочонок: {gg} (осталось {len(qs.meshok)})")
 
-    print(lineeplayer1)                                         # Показываем красивый вид
+    print(lineeplayer1)  # Показываем красивый вид
     print(lineeplayer2)
 
     if len(gg) == 1:
         gg = " " + gg
-
-    for i in line:
-        if gg in i:
-            print("++")
 
     q = input("Зачеркнуть цифру? (Y/N)")
 
